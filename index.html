@@ -7,8 +7,8 @@
   <body>
     <div id="app">
       <h2>contador: {{ contador }}</h2>
-      <button v-on:click="sumar" type="button">+1</button>
-      <button v-on:click="restar" type="button">-1</button>
+      <button @click="contador++" type="button">+1</button>
+      <button @click="contador--" type="button">-1</button>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -17,15 +17,15 @@
         el: '#app',
         data: {
           contador : 0
-        },
-        methods: {
-          sumar: function () {
-            this.contador++
-          },
-          restar: function () {
-            this.contador--
-          }
-        }
+         } //,
+        // methods: {
+        //   sumar: function () {
+        //     this.contador++
+        //   },
+        //   restar: function () {
+        //     this.contador--
+        //   }
+        // }
       })
     </script>
   </body>
