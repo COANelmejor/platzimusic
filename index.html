@@ -6,14 +6,12 @@
   </head>
   <body>
     <div id="app">
-      <input type="text" name="nombre" placeholder="Ingresa tu nombre" v-model="nombre">
-      <p>Tu nombre en mayúsculas es: {{ nombre | upppercase }}</p>
-
       <form @submit.prevent="submit">
         <h2>¿Cuál es tu color favorito?</h2>
         <template v-for="color in colores">
-          <input type="checkbox" v-model="coloresSeleccionados" v-bind:id="color.value" v-bind:value="color.nombre">
-          <label v-bind:for="color.value">{{ color.nombre }}</label>
+          <color :color="color" @checked="selectColor"></color>
+          <!-- <input type="checkbox" v-model="coloresSeleccionados" v-bind:id="color.value" v-bind:value="color.nombre">
+          <label v-bind:for="color.value">{{ color.nombre }}</label> -->
         </template>
         <button type="submit" name="button">Enviar</button>
       </form>
@@ -21,6 +19,21 @@
 
     <script src="https://unpkg.com/vue"></script>
     <script type="text/javascript">
+      Vue.component('color', {
+        props: ['color'],
+        methods: {
+          onchange: function(ev) {
+            this.$emit('checked', this.color.value, ev.target.checked)
+          }
+        },
+        template: `
+        <div>
+          <input type="checkbox" @change="onchange" v-bind:id="color.value" v-bind:value="color.nombre">
+          <label v-bind:for="color.value">{{ color.nombre }}</label>
+        </div>
+        `
+      })
+
       let app = new Vue({
         el: '#app',
         data: {
@@ -48,6 +61,14 @@
          methods: {
            submit: function () {
              console.log(this.coloresSeleccionados);
+           },
+           selectColor: function (color, checked) {
+             if (checked) {
+               this.coloresSeleccionados.push(color)
+             } else {
+               let i = this.coloresSeleccionados.indexOf(color);
+               this.coloresSeleccionados.splice(i,1);
+             }
            }
          }
       })
