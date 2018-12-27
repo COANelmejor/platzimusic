@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Curso VueJS</title>
+  </head>
+  <body>
+    <div class="" id="app">
+      <h1>Hola Soy tu titulo</h1>
+      <h2>Hola soy un subtitulo</h2>
+      Hola {{ nombre }}
+      <a v-if="mostrar" v-bind:href="url" target="_blank"> {{pagina}}</a>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      let app = new Vue({
+        el: '#app',
+        data: {
+          nombre: 'COANelmejor',
+          url: 'https://google.com',
+          pagina: 'Google',
+          mostrar: true
+        }
+      })
+    </script>
+  </body>
+</html>
