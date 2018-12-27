@@ -11,18 +11,10 @@
 
       <form @submit.prevent="submit">
         <h2>¿Cuál es tu color favorito?</h2>
-        <input type="checkbox" v-model="colores" id="color_rojo" value="Rojo">
-        <label for="color_rojo">Rojo</label>
-
-        <input type="checkbox" v-model="colores" id="color_verde" value="Verde">
-        <label for="color_verde">Verde</label>
-
-        <input type="checkbox" v-model="colores" id="color_azul" value="Azul">
-        <label for="color_azul">Azul</label>
-
-        <input type="checkbox" v-model="colores" id="color_amarillo" value="Amarillo">
-        <label for="color_amarillo">Amarillo</label>
-
+        <template v-for="color in colores">
+          <input type="checkbox" v-model="coloresSeleccionados" v-bind:id="color.value" v-bind:value="color.nombre">
+          <label v-bind:for="color.value">{{ color.nombre }}</label>
+        </template>
         <button type="submit" name="button">Enviar</button>
       </form>
     </div>
@@ -33,7 +25,20 @@
         el: '#app',
         data: {
           nombre : '',
-          colores : []
+          colores : [{
+            nombre: 'Azul',
+            value: 'color_azul'
+          },{
+            nombre: 'Rojo',
+            value: 'color_rojo'
+          },{
+            nombre: 'Verde',
+            value: 'color_verde'
+          },{
+            nombre: 'Amarillo',
+            value: 'color_amarillo'
+          }],
+          coloresSeleccionados: []
         },
          filters: {
            upppercase: function (str) {
@@ -42,7 +47,7 @@
          },
          methods: {
            submit: function () {
-             console.log(this.colores);
+             console.log(this.coloresSeleccionados);
            }
          }
       })
