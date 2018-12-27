@@ -6,9 +6,25 @@
   </head>
   <body>
     <div id="app">
-      <h2>contador: {{ contador }}</h2>
-      <button @click="contador++" type="button">+1</button>
-      <button @click="contador--" type="button">-1</button>
+      <input type="text" name="nombre" placeholder="Ingresa tu nombre" v-model="nombre">
+      <p>Tu nombre en mayúsculas es: {{ nombre | upppercase }}</p>
+
+      <form @submit.prevent="submit">
+        <h2>¿Cuál es tu color favorito?</h2>
+        <input type="checkbox" v-model="colores" id="color_rojo" value="Rojo">
+        <label for="color_rojo">Rojo</label>
+
+        <input type="checkbox" v-model="colores" id="color_verde" value="Verde">
+        <label for="color_verde">Verde</label>
+
+        <input type="checkbox" v-model="colores" id="color_azul" value="Azul">
+        <label for="color_azul">Azul</label>
+
+        <input type="checkbox" v-model="colores" id="color_amarillo" value="Amarillo">
+        <label for="color_amarillo">Amarillo</label>
+
+        <button type="submit" name="button">Enviar</button>
+      </form>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -16,16 +32,19 @@
       let app = new Vue({
         el: '#app',
         data: {
-          contador : 0
-         } //,
-        // methods: {
-        //   sumar: function () {
-        //     this.contador++
-        //   },
-        //   restar: function () {
-        //     this.contador--
-        //   }
-        // }
+          nombre : '',
+          colores : []
+        },
+         filters: {
+           upppercase: function (str) {
+             return str.toUpperCase();
+           }
+         },
+         methods: {
+           submit: function () {
+             console.log(this.colores);
+           }
+         }
       })
     </script>
   </body>
