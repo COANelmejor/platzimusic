@@ -6,7 +6,7 @@
   </head>
   <body>
     <div id="app">
-        <h1>{{ titulo | uppercase }}</h1>
+        <h1>{{ titulo | capitalize }}</h1>
         <h2>{{ subtitulo | lowercase }}</h2>
     </div>
 
@@ -24,6 +24,9 @@
           },
           lowercase: function (str) {
             return str.toLowerCase();
+          },
+          capitalize: function(str) {
+            return str.charAt(0).toLocaleLowerCase() + str.slice(1).toLowerCase()
           }
         }
       })
