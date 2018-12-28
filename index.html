@@ -1,77 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" dir="ltr">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Curso VueJS</title>
+    <title>platzimusic</title>
   </head>
   <body>
-    <div id="app">
-      <form @submit.prevent="submit">
-        <h2>¿Cuál es tu color favorito?</h2>
-        <template v-for="color in colores">
-          <color :color="color" @checked="selectColor"></color>
-          <!-- <input type="checkbox" v-model="coloresSeleccionados" v-bind:id="color.value" v-bind:value="color.nombre">
-          <label v-bind:for="color.value">{{ color.nombre }}</label> -->
-        </template>
-        <button type="submit" name="button">Enviar</button>
-      </form>
-    </div>
-
-    <script src="https://unpkg.com/vue"></script>
-    <script type="text/javascript">
-      Vue.component('color', {
-        props: ['color'],
-        methods: {
-          onchange: function(ev) {
-            this.$emit('checked', this.color.value, ev.target.checked)
-          }
-        },
-        template: `
-        <div>
-          <input type="checkbox" @change="onchange" v-bind:id="color.value" v-bind:value="color.nombre">
-          <label v-bind:for="color.value">{{ color.nombre }}</label>
-        </div>
-        `
-      })
-
-      let app = new Vue({
-        el: '#app',
-        data: {
-          nombre : '',
-          colores : [{
-            nombre: 'Azul',
-            value: 'color_azul'
-          },{
-            nombre: 'Rojo',
-            value: 'color_rojo'
-          },{
-            nombre: 'Verde',
-            value: 'color_verde'
-          },{
-            nombre: 'Amarillo',
-            value: 'color_amarillo'
-          }],
-          coloresSeleccionados: []
-        },
-         filters: {
-           upppercase: function (str) {
-             return str.toUpperCase();
-           }
-         },
-         methods: {
-           submit: function () {
-             console.log(this.coloresSeleccionados);
-           },
-           selectColor: function (color, checked) {
-             if (checked) {
-               this.coloresSeleccionados.push(color)
-             } else {
-               let i = this.coloresSeleccionados.indexOf(color);
-               this.coloresSeleccionados.splice(i,1);
-             }
-           }
-         }
-      })
-    </script>
+    <div id="app"></div>
+    <script src="https://coanelmejor.github.io/platzimusic/dist/build.js"></script>
   </body>
 </html>
