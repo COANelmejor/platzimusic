@@ -3,17 +3,21 @@
     img(src='./assets/logo.png')
     h1 PlatziMusic
     ul
-      li(v-for="artist in artists") {{artist.name}}
+      artist(v-for="artist in artists" v-bind:artist="artist" :key="artist.mbid")
 </template>
 
 <script>
 import getArtists from './api'
+import Artist from './components/Artist.vue'
 export default {
   name: 'app',
   data () {
     return {
       artists: []
     }
+  },
+  components: {
+    Artist
   },
   mounted: function () {
     const self = this;
@@ -38,7 +42,6 @@ h1, h2
   font-weight normal
 
 ul
-  list-style-type none
   padding 0
 
 li
