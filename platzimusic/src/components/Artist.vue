@@ -12,6 +12,6 @@ export default {
 </script>
 <style lang="stylus" scoped>
 li.artist
-  display block
+  display inline-block
   margin 10px 0px
 </style>
